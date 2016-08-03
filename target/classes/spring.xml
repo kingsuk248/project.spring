@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="gettingStarted" class="com.practice.self.project.spring.GettingStarted">
+		<property name="message" value="Getting Started..." />
+	</bean>
+	
+	<!--
+	<bean id="preInitializer" class="com.practice.self.project.spring.Initializer" init-method="afterPropertiesSet">
+		<property name="message" value="Pre Initiale..." />
+	</bean>
+	
+	<bean id="postDestroyer" class="com.practice.self.project.spring.Disposer" destroy-method="destroy">
+		<property name="message" value="Post Destroy..." />
+	</bean>
+	 -->
+
+	<bean id="hereWeGo" class="com.practice.self.project.spring.HereWeGo" parent="gettingStarted">
+		<property name="message" value="Here we go..." />
+	</bean>
+	
+	<bean id="sheetEvaluator" class="com.practice.self.project.spring.SheetEvaluator">
+		<property name="sheet">
+			<bean id="sheet" class="com.practice.self.project.spring.Sheet">
+				<property name="dictionary">
+					<bean id="dictionary" class="com.practice.self.project.spring.EnglishDictionary" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>
