@@ -1,4 +1,4 @@
-package com.practice.self.project.spring;
+package com.practice.self.project.spring.xml;
 
 public class EnglishDictionary implements Dictionary {
 

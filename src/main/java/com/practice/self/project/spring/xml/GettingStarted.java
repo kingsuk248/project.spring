@@ -1,4 +1,4 @@
-package com.practice.self.project.spring;
+package com.practice.self.project.spring.xml;
 
 public class GettingStarted {
 	private String message;
