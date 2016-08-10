@@ -15,6 +15,7 @@ public class App {
     	hwg.go();
     	App app = new App();
     	app.evaluateSheets();
+    	app.checkParentChildScope();
     	context.registerShutdownHook();
     }
     
@@ -22,5 +23,16 @@ public class App {
     	SheetEvaluator sheetEvaluator = (SheetEvaluator)context.getBean("sheetEvaluator");
     	Sheet sheet = sheetEvaluator.getSheet();
     	System.out.println("Evaluation: " + sheetEvaluator.evaluate(sheet));
+    }
+    
+    public void checkParentChildScope() {
+    	A a1 = (A) context.getBean("a");
+    	A a2 = (A) context.getBean("a");
+    	B b1 = (B) context.getBean("b");
+    	B b2 = (B) context.getBean("b");
+    	System.out.println(a1.hashCode());
+    	System.out.println(a2.hashCode());
+    	System.out.println(b1.hashCode());
+    	System.out.println(b2.hashCode());
     }
 }

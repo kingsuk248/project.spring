@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/practice" />
+		<property name="username" value="root" />
+		<property name="password" value="unix" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg index="0" ref="dataSource"/>
+	</bean>
+	
+	<bean id="simpleJdbcCall" class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+		<constructor-arg index="0" ref="dataSource"/>
+	</bean>
+	
+	<bean id="employeeJdbcTemplate" class="com.practice.self.project.spring.jdbc.EmployeeJdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="simpleJdbcCall" ref="simpleJdbcCall" />
+	</bean>
+
+	<bean id="employee1" class="com.practice.self.project.spring.jdbc.Employee">
+		<property name="id" value="1" />
+		<property name="name" value="Alex Foster" />
+		<property name="department" value="Engineering" />
+	</bean>
+	
+	<bean id="employee2" class="com.practice.self.project.spring.jdbc.Employee">
+		<property name="id" value="2" />
+		<property name="name" value="Jamie Longhorne" />
+		<property name="department" value="Operations" />
+	</bean>
+	
+	<bean id="employee3" class="com.practice.self.project.spring.jdbc.Employee">
+		<property name="id" value="3" />
+		<property name="name" value="Brad Spec" />
+		<property name="department" value="Admin" />
+	</bean>
+	
+	<bean id="employee4" class="com.practice.self.project.spring.jdbc.Employee">
+		<property name="id" value="4" />
+		<property name="name" value="John Smith" />
+		<property name="department" value="Vendor" />
+	</bean>
+	
+</beans>

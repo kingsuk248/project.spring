@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+    <aop:aspectj-autoproxy />
+    
+    <bean id="logger" class="com.practice.self.project.spring.aspects.Logger" />
+    <bean id="employee1" class="com.practice.self.project.spring.aspects.Employee">
+    	<property name="number" value="12345"/>
+    	<property name="designation" value="Ass"/>
+    	<property name="project" value="XYZ"/>
+    </bean>
+    <bean id="employee2" class="com.practice.self.project.spring.aspects.Employee">
+    	<property name="number" value="23456"/>
+    	<property name="designation" value="SenAss"/>
+    	<property name="project"><null/></property>
+    </bean>
+</beans>

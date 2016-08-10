@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+    <aop:config>
+    	<aop:aspect id="logger" ref="logger">
+    		<aop:pointcut id="empNumber" 
+    		expression="execution(* com.practice.self.project.spring.aspects.Employee.setNumber(..))" />
+    		<aop:pointcut id="empDesignation" 
+    		expression="execution(* com.practice.self.project.spring.aspects.Employee.setDesignation(..))" />
+    		<aop:pointcut id="empProject" 
+    		expression="execution(* com.practice.self.project.spring.aspects.Employee.getProject(..))" />
+    		<aop:pointcut id="empException" 
+    		expression="execution(* com.practice.self.project.spring.aspects.Employee.*(..))" />
+    		<aop:before pointcut-ref="empNumber" method="beforeAdvice"/>
+    		<aop:after pointcut-ref="empDesignation" method="afterAdvice"/>
+    		<aop:after-returning pointcut-ref="empProject" method="afterReturning" returning="returnValue" />
+    		<!-- <aop:around pointcut-ref="all" method="aroundAdvice" />  -->
+    		<aop:after-throwing pointcut-ref="empException" method="afterThrowingException" throwing="ime"/>
+    	</aop:aspect>
+    </aop:config>
+    
+    <bean id="logger" class="com.practice.self.project.spring.aspects.Logger" />
+    <bean id="employee1" class="com.practice.self.project.spring.aspects.Employee">
+    	<property name="number" value="12345"/>
+    	<property name="designation" value="Ass"/>
+    	<property name="project" value="XYZ"/>
+    </bean>
+    <bean id="employee2" class="com.practice.self.project.spring.aspects.Employee">
+    	<property name="number" value="23456"/>
+    	<property name="designation" value="SenAss"/>
+    	<property name="project"><null/></property>
+    </bean>
+	
+</beans>
