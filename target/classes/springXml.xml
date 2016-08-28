@@ -36,4 +36,10 @@
 		<property name="message" value="Post Destroy..." />
 	</bean>
 	 -->
+	 
+	 <bean id="a" class="com.practice.self.project.spring.xml.A">
+	 	<property name="b" ref="b" />
+	 </bean>
+	 <bean id="b" scope="prototype" class="com.practice.self.project.spring.xml.B">
+	 </bean>
 </beans>
